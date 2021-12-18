@@ -1,0 +1,13 @@
+%hechos
+despues(chosica,huachipa).
+despues(huachipa,vitarte).
+despues(vitarte,santa_anita).
+despues(santa_anita,san_fernando).
+despues(san_fernando,bolognesi).
+despues(bolognesi,san_marcos).
+mdespues(X,Y):-despues(X,Y).
+mdespues(X,Y):-despues(X,Z),mdespues(Z,Y).
+antes(X,Y):-despues(Y,X).
+mantes(X,Y):-antes(X,Y).
+mantes(X,Y):-antes(X,Z),mantes(Z,Y).
+entre(Z,X,Y):-mdespues(X,Z),mantes(Y,Z).
