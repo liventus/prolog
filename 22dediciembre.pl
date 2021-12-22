@@ -152,7 +152,7 @@ paisdeorigen(mexico,antony).
 paisdeorigen(eeuu,jose).
 paisdeorigen(india,john).
 paisdeorigen(japon,wilfredo).
-pais(japon,aldo).
+paisdeorigen(japon,aldo).
 
 paisdeorigen(maria).
 paisdeorigen(felicita).
@@ -177,6 +177,10 @@ paisdeorigen(ariana).
 paisdeorigen(joselyn).
 paisdeorigen(alexandra).
 paisdeorigen(juana).
+
+
+
+
 
 
 
@@ -280,3 +284,5 @@ progenitor(john,andrea).
 
 
 mmmayor(X,Y):-i_may(X,Z).
+
+
