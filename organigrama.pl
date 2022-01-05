@@ -13,7 +13,7 @@ es_hombre(aldo).
 es_hombre(jose).
 es_hombre(wiliam).
 es_hombre(jorge).
-es_mujer(alice).
+
 es_mujer(sonia).
 es_mujer(rosa).
 es_mujer(carla).
@@ -54,7 +54,8 @@ tiene_turno(ana,dia).
 tiene_turno(carlos,dia).
 tiene_turno(christian,dia).
 tiene_turno(jessica,dia).
-tiene_turno(alice,noche).
+
+tiene_turno(juan,noche).
 tiene_turno(rosa,noche).
 tiene_turno(victor,noche).
 tiene_turno(tania,noche).
@@ -68,7 +69,7 @@ tiene_turno(wiliam,noche).
 
 %PUESTOS_TRABAJO
 su_cargo_es(juan,gerencia).
-su_cargo_es(alice,gerencia).
+
 su_cargo_es(sonia,secretaria).
 su_cargo_es(pedro,administracion).
 su_cargo_es(jhon,administracion).
@@ -96,7 +97,7 @@ su_cargo_es(jorge,auxiliar).
 
 %RANGO_SUELDOS
 su_sueldo_es(juan,7000).
-su_sueldo_es(alice,7000).
+
 su_sueldo_es(sonia,2000).
 su_sueldo_es(pedro,3000).
 su_sueldo_es(jhon,3000).
@@ -142,8 +143,8 @@ es_jefe_de(luz,jessica).
 
 es_jefe_de(carla,ana).
 
-es_jefe_de(alice,rosa).
-es_jefe_de(alice,victor).
+es_jefe_de(juan,rosa).
+es_jefe_de(juan,victor).
 
 es_jefe_de(rosa,aldo).
 es_jefe_de(rosa,jose).
@@ -155,6 +156,11 @@ es_jefe_de(victor,tania).
 
 es_jefe_de(aldo,beatriz).
 es_jefe_de(jeny,jorge).
+
+es_superior_de_jefe(X,Y):-es_jefe_de(X,I),es_jefe_de(I,Y),
+
+todos_los_superiores(X,Y):-es_jefe_de(X,Y).
+todos_los_superiores(X,Y):-es_jefe_de(X,Z),todos_los_superiores(Z,Y).
 
 %lista_empleado(X):-findall(X,es_mujer(X),R).
 %EMPLEADOS_DE
@@ -168,10 +174,13 @@ cant_hombres(X):-findall(N,es_hombre(X),L),length(L,X).
 %cantidad de mujeres en total
 cant_mujeres(X):-findall(N,es_mujer(X),L),length(L,X).
 
-%cantidad de jefes hombres en turno determinado.
+%cantidad de jefes hombres
 cant_hombres_jefes(X):-findall(N,(jefe(X),es_hombre(X)),L),length(L,X).
 
-%cantidad de jefes mujeres en turno determinado.
+%cantidad de jefes hombres en turno noche.
+cant_hombres_jefes_turno_noche(X):-findall(N,(jefe(X),es_hombre(X),tiene_turno(X,noche)),L),length(L,X).
+
+%cantidad de jefes mujeres 
 cant_mujeres_jefes(X):-findall(N,(jefe(X),es_mujer(X)),L),length(L,X).
 
 
@@ -186,6 +195,16 @@ cant_mujer_turno(X,T):-findall(N,(tiene_turno(X,T),es_mujer(X)),L),length(L,X).
 % X tiene cargo de Y
 cargo_de(X,Y):-findall(N,su_cargo_es(X,Y),L),length(L,X).
 
+
+cargo_de_dia(X,Y):-findall(N,(su_cargo_es(X,Y),tiene_turno(X,dia)),L),length(L,X).
+% X tiene cargo de Y
+
+cargo_de_noche(X,Y):-findall(N,(su_cargo_es(X,Y),tiene_turno(X,noche)),L),length(L,X).
+
+cargo_de_turno(X,Y,T):-findall(N,(su_cargo_es(X,Y),tiene_turno(X,T)),L),length(L,X).
+
+
+listar_trabadores(X,T):-tiene_turno(X,T).
 %lista de personas mujeres que ganan mas de N soles
 mujeres_gana_mas_de(X,N):-es_mujer(X),su_sueldo_es(X,R),R>N.
 
@@ -226,9 +245,9 @@ cant_hom_menos_de(X,N):-findall(N,hombres_gana_menos_de(X,N),L),length(L,X).
 porc_personas_menos_de(X,N):-cant_muj_menos_de(A,N),cant_hom_menos_de(B,N),cant_personas(C),X is (A+B)/C.
 
 %pregunta_07
-%cantidad de jefes mujers
+%cantidad de jefes mujers en determinado turno.
 cant_jefes_mujeres_turno(X,T):-findall(N,(jefe(X),es_mujer(X),tiene_turno(X,T)),L),length(L,X).
-%cantidad de jefes hombres
+%cantidad de jefes hombres en determinado turno.
 cant_jefes_hombres_turno(X,T):-findall(N,(jefe(X),es_hombre(X),tiene_turno(X,T)),L),length(L,X).
 
 

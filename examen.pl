@@ -47,6 +47,7 @@ antes(X,Y):-despues(Y,X).
 mantes(X,Y):-antes(X,Y).
 mantes(X,Y):-antes(X,Z),mantes(Z,Y).
 
+
 entre_paraderos(Z,X,Y):-mdespues(X,Z),mantes(Y,Z).
 qsedp(A,X,Y):-mdespues(X,Z),mantes(Y,Z),subio_paredero(A,Z).
 
