@@ -132,6 +132,62 @@ ruta(regular_b,teran).
 ruta(regular_b,rosario_de_villa).
 ruta(regular_b,matellini).
 
+%rutas de c
+
+ruta(regular_c,ramon_castilla).
+ruta(regular_c,tacna).
+ruta(regular_c,jiron_de_la_union).
+ruta(regular_c,colmena).
+ruta(regular_c,estacion_central).
+ruta(regular_c,estadio_nacional).
+ruta(regular_c,mexico).
+ruta(regular_c,canada).
+ruta(regular_c,javier_prado).
+ruta(regular_c,carnaval_y_moreyra).
+ruta(regular_c,aramburu).
+ruta(regular_c,domingo_orue).
+ruta(regular_c,angamos).
+ruta(regular_c,ricardo_palma).
+ruta(regular_c,benavides).
+ruta(regular_c,28_de_julio).
+ruta(regular_c,plaza_de_flores).
+ruta(regular_c,balta).
+ruta(regular_c,bulevar).
+ruta(regular_c,estadio_union).
+ruta(regular_c,escuela_militar).
+ruta(regular_c,teran).
+ruta(regular_c,rosario_de_villa).
+ruta(regular_c,matellini).
+
+%rutas de d
+ruta(regular_d,naranjal).
+ruta(regular_d,izaguirre).
+ruta(regular_d,pacifico).
+ruta(regular_d,independencia).
+ruta(regular_d,los_jazmines).
+ruta(regular_d,tomas_valle).
+ruta(regular_d,el_milagro).
+ruta(regular_d,honorio_delgado).
+ruta(regular_d,uni).
+ruta(regular_d,parque_trabajo).
+ruta(regular_d,caqueta).
+ruta(regular_a,2_de_mayo).
+ruta(regular_a,quilca).
+ruta(regular_a,espania).
+ruta(regular_a,estacion_central).
+
+%expreso1
+%expreso2
+%expreso3
+%expreso4
+%expreso5
+%expreso6
+%expreso7
+%expreso8
+%expreso9
+%expresoSX
+%expresoSXN
+
 
 
 %prosibles preguntas
