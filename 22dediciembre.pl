@@ -207,6 +207,8 @@ paisdeorigen(juana).
 
 
 
+
+
 progenitor(francisco,maria).
 progenitor(francisco,moises).
 progenitor(francisco,alberto).

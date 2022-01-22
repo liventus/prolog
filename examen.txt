@@ -1,13 +1,586 @@
-%hechos
-despues(chosica,huachipa).
-despues(huachipa,vitarte).
-despues(vitarte,santa_anita).
-despues(santa_anita,san_fernando).
-despues(san_fernando,bolognesi).
-despues(bolognesi,san_marcos).
-mdespues(X,Y):-despues(X,Y).
-mdespues(X,Y):-despues(X,Z),mdespues(Z,Y).
+%***********************%
+% ARBOL GENEALOGICO %
+%***********************%
+varon(juan1).
+varon(mario).
+varon(ruben).
+varon(teodoro).
+varon(victor).
+varon(alejandro).
+varon(juanito).
+varon(julio).
+varon(jorge).
+varon(paulino).
+varon(leonardo).
+varon(ernesto).
+varon(juan2).
+varon(antony).
+varon(jose).
+varon(john).
+varon(wilfredo).
+varon(aldo).
+mujer(maria).
+mujer(felicita).
+mujer(gloria).
+mujer(marina1).
+mujer(alicia).
+mujer(brigida).
+mujer(marina2).
+mujer(amelia).
+mujer(irma).
+mujer(tiburcia).
+mujer(graciela).
+mujer(griselda).
+mujer(marilyn).
+mujer(jessica).
+mujer(veronica).
+mujer(rosa).
+mujer(jeny).
+mujer(beatriz).
+mujer(ashly).
+mujer(ariana).
+mujer(joselyn).
+mujer(alexandra).
+progenitor(juan1,alicia).
+progenitor(maria,alicia).
+progenitor(juan1,brigida).
+progenitor(maria,brigida).
+progenitor(felicita,victor).
+progenitor(mario,victor).
+progenitor(ruben,alejandro).
+progenitor(ruben,juanito).
+progenitor(gloria,alejandro).
+progenitor(gloria,juanito).
+progenitor(teodoro,marina2).
+progenitor(teodoro,amelia).
+progenitor(marina1,marina2).
+progenitor(marina1,amelia).
+progenitor(brigida,jorge).
+progenitor(brigida,tiburcia).
+progenitor(brigida,leonardo).
+progenitor(victor,jorge).
+progenitor(victor,tiburcia).
+progenitor(victor,leonardo).
+progenitor(alejandro,graciela).
+progenitor(marina2,graciela).
+progenitor(marina2,griselda).
+progenitor(marina2,juan2).
+progenitor(julio,griselda).
+progenitor(julio,juan2).
+progenitor(irma,antony).
+progenitor(irma,marilyn).
+progenitor(jorge,antony).
+progenitor(jorge,marilyn).
+progenitor(paulino,jessica).
+progenitor(paulino,veronica).
+progenitor(tiburcia,jessica).
+progenitor(tiburcia,veronica).
+progenitor(leonardo,rosa).
+progenitor(leonardo,john).
+progenitor(leonardo,beatriz).
+progenitor(graciela,rosa).
+progenitor(graciela,john).
+progenitor(graciela,beatriz).
+progenitor(ernesto,aldo).
+progenitor(griselda,aldo).
+progenitor(jose,ashly).
+progenitor(marilyn,ashly).
+progenitor(john,ariana).
+progenitor(jeny,ariana).
+progenitor(beatriz,joselyn).
+progenitor(beatriz,alexandra).
+progenitor(wilfredo,joselyn).
+progenitor(wilfredo,alexandra).
+pareja(juan1,maria).
+pareja(felicita,mario).
+pareja(ruben,gloria).
+pareja(teodoro,marina1).
+pareja(brigida,victor).
+pareja(alejandro,marina2).
+pareja(marina2,julio).
+pareja(irma,jorge).
+pareja(paulino,tiburcia).
+pareja(leonardo,graciela).
+pareja(ernesto,griselda).
+pareja(jose,marilyn).
+pareja(john,jeny).
+pareja(beatriz,wilfredo).
+pareja(joselyn,alexandra).
+pais(juan1,peru).
+pais(maria,peru).
+pais(alicia,peru).
+pais(brigida,peru).
+pais(felicita,mexico).
+pais(mario,mexico).
+pais(victor,mexico).
+pais(ruben,chile).
+pais(gloria,chile).
+pais(alejandro,chile).
+pais(juanito,chile).
+pais(teodoro,argentina).
+pais(marina1,argentina).
+pais(marina2,argentina).
+pais(amelia,argentina).
+pais(julio,india).
+pais(irma,españa).
+pais(jorge,españa).
+pais(antony,españa).
+pais(marilyn,españa).
+pais(paulino,italia).
+pais(tiburcia,italia).
+pais(jessica,italia).
+pais(veronica,italia).
+pais(leonardo,portugal).
+pais(graciela,portugal).
+pais(rosa,portugal).
+pais(john,portugal).
+pais(beatriz,francia).
+pais(wilfredo,francia).
+pais(joselyn,francia).
+pais(alexandra,francia).
+pais(ernesto,japon).
+pais(griselda,japon).
+pais(aldo,japon).
+pais(jose,india).
+pais(ashly,india).
+pais(jeny,vietnam).
+pais(ariana,vietnam).
+pais(juan2,china).
+habla(peru,español).
+habla(mexico,español).
+habla(chile,español).
+habla(argentina,español).
+habla(india,hindu).
+habla(españa,español).
+habla(italia,italiano).
+habla(portugal,portugues).
+habla(francia,frances).
+habla(japon,japones).
+habla(vietnam,vietnamita).
+habla(china,mandarin).
+estudio(julio,vietnamita).
+estudio(irma,frances).
+estudio(graciela,italiano).
+estudio(rosa,mandarin).
+estudio(ashly,japones).
+idioma(PERSONA,IDIOMA) :- pais(PERSONA,PAIS),habla(PAIS,IDIOMA).
+idioma(PERSONA,IDIOMA) :-
+progenitor(PROGENITOR,PERSONA),pais(PROGENITOR,PAIS),habla(PAIS,IDIOMA).
+idioma(PERSONA,IDIOMA) :- estudio(PERSONA,IDIOMA).
+%descendientes
+desc(X,Y) :- progenitor(X,Y).
+desc(X,Y) :- progenitor(X,Z),desc(Z,Y).
+%***************%
+% PARADEROS %
+%***************%
+paradero(izaguirre).
+paradero(pacifico).
+paradero(caqueta).
+paradero(tacna).
+paradero(colmena).
+paradero(mexico).
+paradero(canada).
+paradero(balta).
+paradero(bulevar).
+paradero(quilca).
+despues(izaguirre,pacifico).
+despues(pacifico,caqueta).
+despues(caqueta,tacna).
+despues(tacna,colmena).
+despues(colmena,mexico).
+despues(mexico,canada).
+despues(canada,balta).
+despues(balta,bulevar).
+despues(bulevar,quilca).
 antes(X,Y):-despues(Y,X).
-mantes(X,Y):-antes(X,Y).
-mantes(X,Y):-antes(X,Z),mantes(Z,Y).
-entre(Z,X,Y):-mdespues(X,Z),mantes(Y,Z).
+adulto(juan1).
+adulto(maria).
+adulto(felicita).
+adulto(mario).
+adulto(ruben).
+adulto(gloria).
+adulto(teodoro).
+adulto(marina1).
+adulto(alicia).
+adulto(brigida).
+adulto(victor).
+adulto(alejandro).
+adulto(juanito).
+adulto(marina2).
+adulto(amelia).
+adulto(julio).
+adulto(irma).
+adulto(jorge).
+adulto(paulino).
+adulto(tiburcia).
+adulto(leonardo).
+adulto(graciela).
+adulto(ernesto).
+adulto(griselda).
+adulto(juan2).
+adulto(jose).
+adulto(marilyn).
+adulto(john).
+adulto(jeny).
+adulto(beatriz).
+adulto(wilfredo).
+niño(antony).
+niño(ashly).
+niño(jessica).
+niño(veronica).
+niño(rosa).
+niño(ariana).
+niño(joselyn).
+niño(alexandra).
+niño(aldo).
+sube(izaguirre,maria).
+sube(izaguirre,juan1).
+sube(izaguirre,felicita).
+sube(izaguirre,ruben).
+sube(izaguirre,tiburcia).
+sube(izaguirre,leonardo).
+sube(izaguirre,beatriz).
+sube(izaguirre,john).
+sube(pacifico,mario).
+sube(pacifico,gloria).
+sube(pacifico,marina1).
+sube(pacifico,alejandro).
+sube(pacifico,rosa).
+sube(pacifico,antony).
+sube(pacifico,joselyn).
+sube(caqueta,alicia).
+sube(caqueta,brigida).
+sube(caqueta,marina2).
+sube(caqueta,ernesto).
+sube(caqueta,ashly).
+sube(tacna,amelia).
+sube(tacna,jeny).
+sube(tacna,jose).
+sube(tacna,wilfredo).
+sube(colmena,teodoro).
+sube(colmena,graciela).
+sube(colmena,alexandra).
+sube(mexico,irma).
+sube(mexico,juanito).
+sube(mexico,griselda).
+sube(canada,victor).
+sube(canada,jorge).
+sube(canada,jessica).
+sube(canada,paulino).
+sube(balta,julio).
+sube(balta,juan2).
+sube(balta,aldo).
+sube(bulevar,marilyn).
+sube(bulevar,veronica).
+sube(bulevar,ariana).
+baja(pacifico,tiburcia).
+baja(caqueta,maria).
+baja(caqueta,mario).
+baja(caqueta,john).
+baja(tacna,felicita).
+baja(tacna,ruben).
+baja(tacna,alicia).
+baja(tacna,alejandro).
+baja(colmena,juan1).
+baja(colmena,gloria).
+baja(colmena,brigida).
+baja(colmena,ernesto).
+baja(colmena,beatriz).
+baja(mexico,marina1).
+baja(mexico,marina2).
+baja(mexico,rosa).
+baja(mexico,ashly).
+baja(mexico,alexandra).
+baja(canada,juanito).
+baja(canada,leonardo).
+baja(canada,antony).
+baja(canada,joselyn).
+baja(balta,teodoro).
+baja(balta,griselda).
+baja(balta,jorge).
+baja(balta,paulino).
+baja(balta,jose).
+baja(bulevar,amelia).
+baja(bulevar,victor).
+baja(bulevar,graciela).
+baja(bulevar,jeny).
+baja(bulevar,wilfredo).
+baja(quilca,irma).
+baja(quilca,julio).
+baja(quilca,marilyn).
+baja(quilca,jessica).
+baja(quilca,veronica).
+baja(quilca,juan2).
+baja(quilca,ariana).
+baja(quilca,aldo).
+m_despues(X,Y):-despues(X,Y).
+m_despues(X,Y):-despues(X,Z),m_despues(Z,Y).
+m_antes(X,Y):-antes(X,Y).
+m_antes(X,Y):-antes(X,Z),m_antes(Z,Y).
+% personas q subieron antes de un paradero
+subenAntesDe(PARAD,PERS) :- m_despues(Z,PARAD),sube(Z,PERS).
+% personas q subieron entre 2 paraderos
+subenEntreDos(PARAD1,PARAD2,PERS):-
+m_despues(PARAD1,Z),m_despues(Z,PARAD2),sube(Z,PERS).
+%***********************%
+% MEDICOS-PACIENTES %
+%***********************%
+medico(irma).
+medico(tiburcia).
+medico(alejandro).
+medico(julio).
+medico(maria).
+medico(gloria).
+medico(alicia).
+medico(griselda).
+medico(juan2).
+medico(jeny).
+especialidad(irma,neumologia).
+especialidad(tiburcia,urologia).
+especialidad(alejandro,endocrinologia).
+especialidad(julio,reumatologia).
+especialidad(maria,cardiologia).
+especialidad(gloria,dermatologia).
+especialidad(alicia,odontologia).
+especialidad(griselda,ginecologia).
+especialidad(juan2,geriatria).
+especialidad(jeny,oftalmologia).
+paciente(felicita).
+paciente(brigida).
+paciente(victor).
+paciente(marina2).
+paciente(ernesto).
+paciente(jose).
+paciente(rosa).
+paciente(beatriz).
+paciente(aldo).
+paciente(ashly).
+sintoma_paciente(fiebre,brigida).
+sintoma_paciente(tos,brigida).
+sintoma_paciente(dolor_articular,brigida).
+sintoma_paciente(orina_turbia,victor).
+sintoma_paciente(dolor_orinar,victor).
+sintoma_paciente(vision_amarillenta,victor).
+sintoma_paciente(sed,marina2).
+sintoma_paciente(cansancio,marina2).
+sintoma_paciente(diarrea,marina2).
+sintoma_paciente(inmovilidad,ernesto).
+sintoma_paciente(espasmo_muscular,ernesto).
+sintoma_paciente(diente_marron,ernesto).
+sintoma_paciente(latidos_acelerados,jose).
+sintoma_paciente(dolor_pecho,jose).
+sintoma_paciente(enrojecimiento_piel,jose).
+sintoma_paciente(picazon,rosa).
+sintoma_paciente(sarpullido,rosa).
+sintoma_paciente(latidos_lentos,rosa).
+sintoma_paciente(dolor_muelas,beatriz).
+sintoma_paciente(sensibilidad_dental,beatriz).
+sintoma_paciente(dolor_lumbar,beatriz).
+sintoma_paciente(calambre_abdominal,ashly).
+sintoma_paciente(nauseas,ashly).
+sintoma_paciente(debilidad,ashly).
+sintoma_paciente(fatiga,ashly).
+sintoma_paciente(perdida_de_peso,ashly).
+sintoma_paciente(inapetencia,ashly).
+sintoma_paciente(insulina,ashly).
+sintoma_paciente(cansancio,ashly).
+sintoma_paciente(impotencia,ashly).
+sintoma_paciente(vision_borrosa,ashly).
+sintoma_paciente(rigidez,felicita).
+sintoma_paciente(hinchazon_articular,felicita).
+sintoma_paciente(escalofrios,felicita).
+sintoma_paciente(vision_nublada,aldo).
+sintoma_paciente(sensibilidad_luz,aldo).
+sintoma_paciente(perdida_gusto,aldo).
+sintoma_enfermedad(debilidad,tuberculosis).
+sintoma_enfermedad(fatiga,tuberculosis).
+sintoma_enfermedad(perdida_de_peso,tuberculosis).
+sintoma_enfermedad(inapetencia,tuberculosis).
+sintoma_enfermedad(escalofrios,tuberculosis).
+sintoma_enfermedad(fiebre,tuberculosis).
+sintoma_enfermedad(sudores_nocturnos,tuberculosis).
+sintoma_enfermedad(dolor_de_abdomen, gastritis).
+sintoma_enfermedad(nauseas, gastritis).
+sintoma_enfermedad(vomito, gastritis).
+sintoma_enfermedad(sensacion_de_llenura, gastritis).
+sintoma_enfermedad(inapetencia, gastritis).
+sintoma_enfermedad(adelgazamiento, gastritis).
+sintoma_enfermedad(fiebre,covid).
+sintoma_enfermedad(tos,covid).
+sintoma_enfermedad(perdida_gusto,covid).
+sintoma_enfermedad(orina_turbia,calculo_renal).
+sintoma_enfermedad(dolor_orinar,calculo_renal).
+sintoma_enfermedad(escalofrios,calculo_renal).
+sintoma_enfermedad(sed,diabetes).
+sintoma_enfermedad(cansancio,diabetes).
+sintoma_enfermedad(insulina,diabetes).
+sintoma_enfermedad(calambre,diabetes).
+sintoma_enfermedad(impotencia,diabetes).
+sintoma_enfermedad(vision_borrosa,diabetes).
+sintoma_enfermedad(inmovilidad,lumbalgia).
+sintoma_enfermedad(espasmo_muscular,lumbalgia).
+sintoma_enfermedad(dolor_lumbar,lumbalgia).
+sintoma_enfermedad(latidos_acelerados,arritmia).
+sintoma_enfermedad(latidos_lentos,arritmia).
+sintoma_enfermedad(dolor_pecho,arritmia).
+sintoma_enfermedad(enrojecimiento_piel,eczema).
+sintoma_enfermedad(picazon,eczema).
+sintoma_enfermedad(sarpullido,eczema).
+sintoma_enfermedad(dolor_muelas,caries).
+sintoma_enfermedad(sensibilidad_dental,caries).
+sintoma_enfermedad(diente_marron,caries).
+sintoma_enfermedad(calambre_abdominal,dismenorrea).
+sintoma_enfermedad(picazon,dismenorrea).
+sintoma_enfermedad(sudoracion,dismenorrea).
+sintoma_enfermedad(nauseas,dismenorrea).
+sintoma_enfermedad(diarrea,dismenorrea).
+sintoma_enfermedad(rigidez,artritis).
+sintoma_enfermedad(hinchazon_articular,artritis).
+sintoma_enfermedad(dolor_articular,artritis).
+sintoma_enfermedad(vision_nublada,cataratas).
+sintoma_enfermedad(sensibilidad_luz,cataratas).
+sintoma_enfermedad(vision_amarillenta,cataratas).
+especialidad_asignada(covid,neumologia).
+especialidad_asignada(calculo_renal,urologia).
+especialidad_asignada(diabetes,endocrinologia).
+especialidad_asignada(lumbalgia,reumatologia).
+especialidad_asignada(arritmia,cardiologia).
+especialidad_asignada(eczema,dermatologia).
+especialidad_asignada(caries,odontologia).
+especialidad_asignada(dismenorrea,ginecologia).
+especialidad_asignada(artritis,geriatria).
+especialidad_asignada(cataratas,oftalmologia).
+enfermedadQuePadece(PACIENTE,Y):-sintoma_paciente(X,PACIENTE),sintoma_enfermed
+ad(X,Y).
+consultaMedica(PACIENTE,MEDICO):-enfermedadQuePadece(PACIENTE,Y),especialidad_
+asignada(Y,Z),especialidad(MEDICO,Z).
+consultaPorSintoma(SINTOMA,MEDICO):-sintoma_enfermedad(SINTOMA,X),especialidad_
+asignada(X,Y),especialidad(MEDICO,Y).
+% PREGUNTAS:
+% descendientes de ruben que subieron antes de tacna
+descSubenAntesDe(PERS,PARAD,DESC):-desc(PERS,DESC),subenAntesDe(PARAD,DES
+C).
+% descendientes de ruben que subieron antes de tacna y hablan portugues y frances
+descSAD2idiomas(PERS,PARAD,IDIO1,IDIO2,DESC):-descSubenAntesDe(PERS,PARAD,
+DESC),idioma(DESC,IDIO1),idioma(DESC,IDIO2).
+% recaudacion total de personas que subieron entre pacifico y colmena
+adultSubenEntreDos(PARAD1,PARAD2,PERS):-subenEntreDos(PARAD1,PARAD2,PERS),
+adulto(PERS).
+f1lista(PARAD1,PARAD2,PERS):-setof(W,adultSubenEntreDos(PARAD1,PARAD2,W),PERS
+).
+nf1lista(PARAD1,PARAD2,Y):-f1lista(PARAD1,PARAD2,X),length(X,Y).
+niñosSubenEntreDos(PARAD1,PARAD2,PERS):-subenEntreDos(PARAD1,PARAD2,PERS),
+niño(PERS).
+f2lista(PARAD1,PARAD2,PERS):-setof(W,niñosSubenEntreDos(PARAD1,PARAD2,W),PER
+S).
+nf2lista(PARAD1,PARAD2,Y):-f2lista(PARAD1,PARAD2,X),length(X,Y).
+recaudacion(PARAD1,PARAD2,REC):-nf1lista(PARAD1,PARAD2,Y1),nf2lista(PARAD1,PAR
+AD2,Y2),A is Y1*1,B is Y2*0.5,REC is A+B.
+% subieron antes de canada que hablen español y frances
+suben2idiomas(PARAD,IDIO1,IDIO2,PERS):-subenAntesDe(PARAD,PERS),idioma(PERS,I
+DIO1),idioma(PERS,IDIO2).
+% q porcentaje DE personas q hablan portugues SON descendientes de ruben:
+descendientes de ruben q hablan portugues / personas q hablan portugues
+drhp(PERS,IDIO,W):-desc(PERS,W),idioma(W,IDIO).
+drhplista(PERS,IDIO,Y):-setof(W,drhp(PERS,IDIO,W),Y).
+ndrhplista(PERS,IDIO,Y):-drhplista(PERS,IDIO,X),length(X,Y).
+phplista(Y,IDIO):-setof(W,idioma(W,IDIO),Y).
+nphplista(X,IDIO):-phplista(Y,IDIO),length(Y,X).
+porc1(PERS,IDIO,P):-ndrhplista(PERS,IDIO,Y),nphplista(X,IDIO),P is Y/X.
+% q porcentaje DE los hijos de pedro SON mujeres: numero de mujeres/total de hijos de
+pedro
+hijos_total(PADRE,HIJOS):- setof(Z,progenitor(PADRE,Z),HIJOS).
+nhijos_total(PADRE,HIJOS):- hijos_total(PADRE,Z),length(Z,HIJOS).
+hijos_muj(PADRE,HIJAS):- progenitor(PADRE,HIJAS),mujer(HIJAS).
+fhijos_muj(PADRE,HIJAS):- setof(Z,hijos_muj(PADRE,Z),HIJAS).
+nhijos_muj(PADRE,HIJAS):- fhijos_muj(PADRE,Z), length(Z,HIJAS).
+porc_hijas(PADRE,PORC):- nhijos_muj(PADRE,Z1),nhijos_total(PADRE,Z2),PORC is
+Z1/Z2.
+% DE los que hablan portugues qué porcentaje SON hijos de marina2: hijos de marina2 que
+hablan portugues/hablan portugues
+hjmhp(PERS,IDIO,X):-progenitor(PERS,X),idioma(X,IDIO).
+hijmlista(PERS,IDIO,X):-setof(Y,hjmhp(PERS,IDIO,Y),X).
+nhijmlista(PERS,IDIO,Y):-hijmlista(PERS,IDIO,X),length(X,Y).
+porc3(PERS,IDIO,P):-nhijmlista(PERS,IDIO,Y),nphplista(X,IDIO),P is Y/X.
+% q porcentaje DE los que subieron antes de grau (SON los que) hablan ingles: hablan
+ingles/subieron antes de grau
+fsubenAntesDe(PARAD,PERS):-setof(Z,subenAntesDe(PARAD,Z),PERS).
+nsubenAntesDe(PARAD,PERS):-fsubenAntesDe(PARAD,Z),length(Z,PERS).
+hablan_suben(PARADERO,IDIOMA,PERSONAS):-subenAntesDe(PARADERO,PERSONAS
+),idioma(PERSONAS,IDIOMA).
+fhablan_suben(PARADERO,IDIOMA,PERSONAS):-setof(Z,hablan_suben(PARADERO,IDIO
+MA,Z),PERSONAS).
+nhablan_suben(PARADERO,IDIOMA,PERSONAS):-
+fhablan_suben(PARADERO,IDIOMA,Z),length(Z,PERSONAS).
+porc_sub_hablan(PARADERO,IDIOMA,PORC):-nhablan_suben(PARADERO,IDIOMA,Z1),n
+subenAntesDe(PARADERO,Z2),PORC is Z1/Z2.
+% descendientes de pedro q se atendieron con el médico raul
+sintomaMedico(SIN,MED):-sintoma_enfermedad(SIN,ENF),especialidad_asignada(ENF,ES
+P),especialidad(MED,ESP).
+medicoDescendientes(PERS,MED):-progenitor(PERS,X),sintoma_paciente(X,SIN),sintoma
+Medico(SIN,MED).
+% q sintomas de covid tienen los descendientes de pedro
+sintomasDescendientes(PERS,SIN):-progenitor(PERS,X),sintoma_paciente(X,SIN).
+% los medicos tienen especialidades y los pacientes tienen sintomas, cada enfermedad
+tiene una especialidad respectiva
+medicoEnfermedades(MED,
+ENF):-especialidad(MED,ESP),especialidad_asignada(ENF,ESP).
+% si el paciente tiene tos acudirá al especialista correspondiente
+%sintomaMedico(tos,MED).
+% descendientes de pedro q se han atendido con el doctor tal
+%
+medicoDescendientesDe(PERS,MED,DEC):-sintomaMedico(SIN,MED),sintoma_paciente(D
+EC,SIN),progenitor(PERS,DEC).
+% descendientes de pedro q subieron antes de grau y tienen covid
+decenPersSubEnf(PERS,PARAD,ENF,VIAJ):- sintoma_enfermedad(SIN,ENF),
+sintoma_paciente(VIAJ,SIN),subenAntesDe(PARAD,VIAJ), progenitor(PERS,VIAJ).
+%3. Listar los nombres de los médicos cuyos pacientes hablan más de dos idiomas ..... (15,
+12)
+% hablan mas de dos idiomas:
+idiomaLista(PER,IDIO):-setof(Y,idioma(PER,IDIO),Y).
+
+
+
+
+
+
+
+% Considerando que un paciente sufre de una enfermedad solo si tiene más del 50% de
+los
+
+
+
+
+%síntomas respectivos
+%a) listar los pacientes con las enfermedades que
+sufren……………………………………………… (10, 8)
+
+%porcentaje sintomaspresentes entre sintomas totales de enfermedad.
+sintomas_enfermedadLista(ENF,SIN):-setof(SIN,sintoma_enfermedad(SIN,ENF),SIN).
+sintomas_enfermedadNumero(ENF,Z):-sintomas_enfermedadLista(ENF,SIN),length(SIN,Z).
+pacienteSintEnfermedad(PER,ENF,SIN):-sintoma_enfermedad(SIN,ENF),sintoma_paciente(
+SIN,PER).
+pacienteSintEnfermedadLista(PER,ENF,SIN):-setof(SIN,pacienteSintEnfermedad(PER,ENF,
+SIN),SIN).
+pacienteSintEnfermedadNumero(PER,ENF,Z):-pacienteSintEnfermedadLista(PER,ENF,SIN)
+,length(SIN,Z).
+porc_sintoma_enfermedad(PER,ENF,PORC):-pacienteSintEnfermedadNumero(PER,ENF,Z
+1),sintomas_enfermedadNumero(ENF,Z2),PORC is Z1/Z2.
+personaEnfermedadConfirmada(PER,ENF,Y):-porc_sintoma_enfermedad(PER,ENF,PORC),
+PORC>0.5, Y = ENF .
+personaEnfermedades(PER,Y):-
+sintoma_paciente(SIN,PER),sintoma_enfermedad(SIN,ENF),
+personaEnfermedadConfirmada(PER,ENF,Y).
+%Lista de las enfermedades con mas del 50% de sintomas
+personaEnfermedadesLista(PER,Y):- setof(Y,personaEnfermedades(PER,Y),Y).
+%b) indicar cuantos pacientes enfermos existen
+
+
+……………………………………………………….…… (10, 8)
+personasEnfermasTotales(PER):-sintoma_paciente(SIN,PER),sintoma_enfermedad(SIN,EN
+F), personaEnfermedadConfirmada(PER,ENF,ENF).
+personasEnfermasTotalesLista(PER):-setof(PER,personasEnfermasTotales(PER),PER).
+%cantidad personas enfermas
+personasEnfermasTotalesNumero(Z):-personasEnfermasTotalesLista(PER),length(PER,Z).
+//a)
+//b)
